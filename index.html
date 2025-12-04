@@ -1,128 +1,742 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Anniversary</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(180deg, #ffdde1, #ee9ca7);
-      color: #333;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary Sayang ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .container {
-      padding: 20px;
-      text-align: center;
-    }
+        body {
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive;
+            overflow: hidden;
+            background: #ffd1dc;
+        }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-top: 30px;
-      color: #b30059;
-    }
+        /* Slide Container */
+        .slider-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            touch-action: pan-y;
+        }
 
-    .heart {
-      font-size: 3rem;
-      animation: pulse 1.5s infinite;
-    }
+        .slide {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow-y: auto;
+        }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
+        /* Slide Backgrounds */
+        .slide-1 { background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 100%); }
+        .slide-2 { background: linear-gradient(135deg, #ffb6c1 0%, #ff85a2 100%); }
+        .slide-3 { background: linear-gradient(135deg, #ff85a2 0%, #ff69b4 100%); }
+        .slide-4 { background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%); }
+        .slide-5 { background: linear-gradient(135deg, #ff1493 0%, #c71585 100%); }
+        .slide-6 { background: linear-gradient(135deg, #c71585 0%, #ffd1dc 100%); }
 
-    .gallery {
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+        /* Navigation Dots */
+        .dots-container {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-    .button {
-      margin-top: 25px;
-      padding: 12px 20px;
-      background: #b30059;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: .3s;
-    }
+        .dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
 
-    .button:hover {
-      background: #d91a6a;
-    }
+        /* Swipe Instructions */
+        .swipe-hint {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.9em;
+            text-align: center;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-    #messageBox {
-      margin-top: 20px;
-      padding: 15px;
-      background: white;
-      border-radius: 12px;
-      display: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
 
-    .floating-heart {
-      position: fixed;
-      font-size: 1.6rem;
-      color: red;
-      animation: floatUp 3s linear forwards;
-    }
+        /* Slide 1 - Opening */
+        .slide-1 .big-heart {
+            font-size: 150px;
+            animation: heartBeat 1.5s infinite;
+            margin-bottom: 20px;
+        }
 
-    @keyframes floatUp {
-      0% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(-200px); }
-    }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
 
-  </style>
+        .slide-1 h1 {
+            font-size: 2.5em;
+            color: #ff1493;
+            text-align: center;
+            text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.5);
+            animation: fadeInUp 1s;
+            margin-bottom: 20px;
+        }
+
+        .slide-1 p {
+            color: #ff69b4;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        /* Slide 2 - Nailong 3D */
+        .nailong-3d-container {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .nailong-placeholder {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            border: 5px solid #ffb6c1;
+            animation: float3d 3s ease-in-out infinite;
+        }
+
+        @keyframes float3d {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(10deg); }
+        }
+
+        .nailong-placeholder .cat-emoji {
+            font-size: 120px;
+            margin-bottom: 20px;
+            animation: wiggle 2s infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .slide-2 h2 {
+            color: white;
+            font-size: 2em;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .slide-2 p {
+            color: white;
+            text-align: center;
+            font-size: 1.1em;
+            max-width: 350px;
+        }
+
+        /* Slide 3 - Love Letter */
+        .love-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            animation: slideInLeft 0.8s;
+            border: 5px solid #ff69b4;
+            position: relative;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .love-card::before {
+            content: '💌';
+            position: absolute;
+            top: -30px;
+            right: 30px;
+            font-size: 60px;
+        }
+
+        .love-card h2 {
+            color: #ff1493;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .love-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1em;
+        }
+
+        /* Slide 4 - Counter */
+        .counter-box {
+            background: white;
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 15px 50px rgba(255, 105, 180, 0.5);
+            animation: zoomIn 0.8s;
+            text-align: center;
+            max-width: 400px;
+            border: 5px solid #ff1493;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .counter-box h2 {
+            color: #ff1493;
+            margin-bottom: 30px;
+            font-size: 1.6em;
+        }
+
+        .counter-display {
+            font-size: 5em;
+            color: #ff69b4;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.3);
+            margin: 20px 0;
+            animation: numberPulse 2s infinite;
+        }
+
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .counter-label {
+            color: #ff1493;
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+
+        /* Slide 5 - Photo Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            border: 3px solid #c71585;
+            animation: popIn 0.6s backwards;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .photo-item:nth-child(1) { animation-delay: 0.1s; }
+        .photo-item:nth-child(2) { animation-delay: 0.2s; }
+        .photo-item:nth-child(3) { animation-delay: 0.3s; }
+        .photo-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: calc(100% - 30px);
+            background: linear-gradient(135deg, #ffd1dc, #ffb6c1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .photo-caption {
+            text-align: center;
+            color: #c71585;
+            font-size: 0.8em;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .slide-5 h2 {
+            color: white;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        /* Slide 6 - Final Surprise */
+        .surprise-box {
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .surprise-box .nailong-dance {
+            font-size: 150px;
+            margin-bottom: 30px;
+            animation: dance 1s infinite;
+        }
+
+        @keyframes dance {
+            0%, 100% { transform: rotate(-10deg) translateY(0); }
+            25% { transform: rotate(10deg) translateY(-20px); }
+            50% { transform: rotate(-10deg) translateY(0); }
+            75% { transform: rotate(10deg) translateY(-10px); }
+        }
+
+        .surprise-box h1 {
+            color: white;
+            font-size: 2.5em;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            animation: rainbow 3s infinite;
+        }
+
+        @keyframes rainbow {
+            0%, 100% { color: #ff69b4; }
+            33% { color: #ffd1dc; }
+            66% { color: white; }
+        }
+
+        .surprise-box p {
+            color: white;
+            font-size: 1.3em;
+            line-height: 1.8;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            top: -10px;
+            animation: confettiFall 3s linear forwards;
+            z-index: 999;
+        }
+
+        @keyframes confettiFall {
+            to {
+                top: 100vh;
+                transform: rotateZ(720deg);
+            }
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            animation: floatUp 4s ease-in forwards;
+            z-index: 999;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                bottom: -50px;
+            }
+            100% {
+                opacity: 0;
+                bottom: 100vh;
+            }
+        }
+
+        /* Info box for Nailong */
+        .info-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 350px;
+            margin-top: 20px;
+            border: 3px solid #ff69b4;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .info-box h3 {
+            color: #ff1493;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-box p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .info-box .code-snippet {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.8em;
+            margin-top: 10px;
+            overflow-x: auto;
+            border-left: 4px solid #ff69b4;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .slide-1 h1 { font-size: 2em; }
+            .slide-1 .big-heart { font-size: 100px; }
+            .love-card { padding: 30px 20px; }
+            .counter-display { font-size: 4em; }
+            .gallery-grid { gap: 10px; }
+            .surprise-box h1 { font-size: 2em; }
+            .surprise-box .nailong-dance { font-size: 100px; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="heart">❤️</div>
-    <h1>Happy Anniversary, Sayang!</h1>
-    <p>Thank you for every moment, every laugh, every memory.</p>
+    <div class="slider-container" id="sliderContainer">
+        <!-- Slide 1: Opening -->
+        <div class="slide slide-1">
+            <div class="big-heart">💖</div>
+            <h1>Happy Anniversary<br>Sayang!</h1>
+            <p>Untuk cinta terbesar dalam hidupku</p>
+        </div>
 
-    <button class="button" onclick="showMessage()">Klik untuk Pesan Rahasia 💌</button>
-    <div id="messageBox"></div>
+        <!-- Slide 2: Nailong 3D -->
+        <div class="slide slide-2">
+            <div class="nailong-3d-container">
+                <div class="nailong-placeholder">
+                    <div class="cat-emoji">🐱</div>
+                    <div style="font-size: 1.2em; color: #ff69b4; font-weight: bold;">Nailong</div>
+                </div>
+            </div>
+            <h2>Ini Nailong Kesayangan Kamu! 🎀</h2>
+            <p>Dia ikut merayakan anniversary kita hari ini!</p>
+            <div class="info-box">
+                <h3>🎨 Cara Tambah Nailong 3D Asli:</h3>
+                <p>Untuk menambahkan model 3D Nailong yang real, kamu bisa:</p>
+                <div class="code-snippet">
+1. Download model 3D Nailong (.glb)<br>
+2. Upload ke folder project<br>
+3. Gunakan Three.js untuk render<br>
+<br>
+Atau gunakan gambar/GIF Nailong:<br>
+&lt;img src="nailong.gif"&gt;
+                </div>
+            </div>
+        </div>
 
-    <h2 style="margin-top: 40px; color:#b30059;">Our Memories</h2>
-    <div class="gallery">
-      <!-- Replace image sources with your own URLs -->
-      <img src="1.jpg" />
-      <img src="2.jpg" />
-      <img src="3.jpg" />
+        <!-- Slide 3: Love Letter -->
+        <div class="slide slide-3">
+            <div class="love-card">
+                <h2>Surat Cinta 💌</h2>
+                <p>
+                    Halo sayangku yang paling cantik! 🌸
+                    <br><br>
+                    Setiap hari bersamamu adalah berkah. Kamu membuat hidupku penuh warna dan kebahagiaan. 
+                    Terima kasih sudah menjadi teman terbaik, kekasih tersayang, dan sumber kebahagiaanku.
+                    <br><br>
+                    Aku berjanji akan selalu ada untukmu! 
+                    <br><br>
+                    I love you to the moon and back! 🌙✨
+                    <br><br>
+                    <strong>Dengan cinta,<br>Pacarmu 💕</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Counter -->
+        <div class="slide slide-4">
+            <div class="counter-box">
+                <h2>Kita Sudah Bersama Selama:</h2>
+                <div class="counter-display" id="daysCounter">0</div>
+                <div class="counter-label">Hari Penuh Cinta 💝</div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Photo Gallery -->
+        <div class="slide slide-5">
+            <h2>🎀 Kenangan Kita 🎀</h2>
+            <div class="gallery-grid">
+                <div class="photo-item">
+                    <div class="photo-placeholder">📷</div>
+                    <div class="photo-caption">Pertama kita</div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">📸</div>
+                    <div class="photo-caption">Selfie lucu</div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">🎉</div>
+                    <div class="photo-caption">Perayaan kita</div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">🌸</div>
+                    <div class="photo-caption">Jalan berdua</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Final Surprise -->
+        <div class="slide slide-6">
+            <div class="surprise-box">
+                <div class="nailong-dance">🐱</div>
+                <h1>I LOVE YOU!</h1>
+                <p>
+                    🎉 Terima kasih sudah menjadi bagian dari hidupku! 🎉
+                    <br><br>
+                    Kamu adalah yang terbaik! 💖
+                    <br><br>
+                    Happy Anniversary, Sayang! 🎊
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    function showMessage() {
-      const box = document.getElementById('messageBox');
-      box.style.display = 'block';
-      box.innerText = "Aku bersyukur bisa melewati hari demi hari bersamamu. Semoga kita terus tumbuh dan saling mencintai lebih dari kemarin.";
-    }
+    <!-- Navigation Dots -->
+    <div class="dots-container" id="dotsContainer"></div>
+    
+    <!-- Swipe Hint -->
+    <div class="swipe-hint">
+        ⬅️ Geser untuk lanjut ➡️
+    </div>
 
-    // Floating hearts
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.classList.add('floating-heart');
-      heart.innerText = '❤️';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.bottom = '0px';
-      document.body.appendChild(heart);
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 6;
+        let startX = 0;
+        let isDragging = false;
 
-      setTimeout(() => heart.remove(), 3000);
-    }, 800);
-  </script>
+        // Initialize dots
+        function initDots() {
+            const dotsContainer = document.getElementById('dotsContainer');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Update slide position
+        function updateSlides() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                const offset = (index - currentSlide) * 100;
+                slide.style.transform = `translateX(${offset}%)`;
+            });
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+
+            // Trigger special effects for certain slides
+            if (currentSlide === 5) {
+                createConfetti();
+                createHearts();
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                currentSlide = index;
+                updateSlides();
+            }
+        }
+
+        // Touch events
+        const container = document.getElementById('sliderContainer');
+
+        container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
+
+        container.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const currentX = e.touches[0].clientX;
+            const diff = startX - currentX;
+            
+            if (Math.abs(diff) > 50) {
+                if (diff > 0 && currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlides();
+                    isDragging = false;
+                } else if (diff < 0 && currentSlide > 0) {
+                    currentSlide--;
+                    updateSlides();
+                    isDragging = false;
+                }
+            }
+        });
+
+        container.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // Mouse events for desktop
+        container.addEventListener('mousedown', (e) => {
+            startX = e.clientX;
+            isDragging = true;
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const currentX = e.clientX;
+            const diff = startX - currentX;
+            
+            if (Math.abs(diff) > 100) {
+                if (diff > 0 && currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlides();
+                    isDragging = false;
+                } else if (diff < 0 && currentSlide > 0) {
+                    currentSlide--;
+                    updateSlides();
+                    isDragging = false;
+                }
+            }
+        });
+
+        container.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlides();
+            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        // Counter
+        const anniversaryDate = new Date('2024-01-01'); // GANTI TANGGAL INI!
+        
+        function updateCounter() {
+            const today = new Date();
+            const diffTime = Math.abs(today - anniversaryDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('daysCounter').textContent = diffDays;
+        }
+
+        // Confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = ['#ff69b4', '#ffd1dc', '#ff1493', '#ffb6c1'][Math.floor(Math.random() * 4)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Hearts effect
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.textContent = ['💖', '💕', '💗', '💝'][Math.floor(Math.random() * 4)];
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 50);
+            }
+        }
+
+        // Initialize
+        initDots();
+        updateSlides();
+        updateCounter();
+    </script>
 </body>
 </html>
